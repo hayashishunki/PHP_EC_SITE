@@ -3,12 +3,12 @@
 // session_start();
 // session_regenerate_id(true);
 // if (isset($_SESSION["login"]) === false) {
-    // print "ログインしていません。<br><br>";
-    // print "<a href='staff_login.html'>ログイン画面へ</a>";
-    // exit();
+// print "ログインしていません。<br><br>";
+// print "<a href='staff_login.html'>ログイン画面へ</a>";
+// exit();
 // } else {
-    // print $_SESSION["name"] . "さんログイン中";
-    // print "<br><br>";
+// print $_SESSION["name"] . "さんログイン中";
+// print "<br><br>";
 // }
 ?>
 
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <form action="staff_add_check.php" method="POST">
+    <form action="staff_add_check.php" method="post">
         スタッフ追加<br><br>
         スタッフ名<br>
         <input type="text" name="name">
