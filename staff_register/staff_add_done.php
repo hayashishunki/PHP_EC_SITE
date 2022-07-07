@@ -1,3 +1,17 @@
+<?php
+
+//session_start();
+//session_regenerate_id(true);
+//if(isset($_SESSION["login"]) === false) {
+//    print "ログインしていません。<br><br>";
+//    print "<a href='staff_login.html'>ログイン画面へ</a>";
+//    exit();
+//} else {
+//    print $_SESSION["name"]."さんログイン中";
+//    print "<br><br>";
+//}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -11,7 +25,7 @@
 <body>
     <?php
 
-    require_once("env.php");
+    require_once("../env.php");
     require_once("../common/common.php");
 
     $host = DB_HOST;
@@ -23,7 +37,7 @@
     $name = $post["name"];
     $pass = $post["pass"];
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=UTF-8";
+    $dsn = "mysql:host=$host;dbname=$db;charset=UTF8";
 
     try {
         $dbh = new PDO($dsn, $user, $password, [
@@ -35,10 +49,16 @@
         $data[] = $name;
         $data[] = $pass;
         $stmt->execute($data);
+        //切断
+        $dbh = null;
     } catch (Exception $e) {
-        
+        echo "DB接続エラー".$e->getMessage();
+
     }
     ?>
+
+    スタッフを追加しました。<br><br>
+    <a href="staff_list.php">スタッフ一覧へ</a>
 
 </body>
 
