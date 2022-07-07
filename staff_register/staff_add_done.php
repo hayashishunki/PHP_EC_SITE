@@ -1,15 +1,15 @@
 <?php
 
-//session_start();
-//session_regenerate_id(true);
-//if(isset($_SESSION["login"]) === false) {
-//    print "ログインしていません。<br><br>";
-//    print "<a href='staff_login.html'>ログイン画面へ</a>";
-//    exit();
-//} else {
-//    print $_SESSION["name"]."さんログイン中";
-//    print "<br><br>";
-//}
+session_start();
+session_regenerate_id(true);
+if (isset($_SESSION["login"]) === false) {
+    print "ログインしていません。<br><br>";
+    print "<a href='staff_login.html'>ログイン画面へ</a>";
+    exit();
+} else {
+    print $_SESSION["name"] . "さんログイン中";
+    print "<br><br>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,8 +52,7 @@
         //切断
         $dbh = null;
     } catch (Exception $e) {
-        echo "DB接続エラー".$e->getMessage();
-
+        echo "DB接続エラー" . $e->getMessage();
     }
     ?>
 

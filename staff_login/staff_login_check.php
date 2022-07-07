@@ -39,7 +39,7 @@ try {
         $_SESSION["login"] = 1;
         $_SESSION["name"] = $rec["name"];
         $_SESSION["coda"] = $code;
-        header("Location:staff_login_top.html");
+        header("Location:staff_login_top.php");
         exit();
     }
 } catch (Exception $e) {
