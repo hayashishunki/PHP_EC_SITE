@@ -47,7 +47,7 @@ if (isset($_SESSION["login"]) === false) {
         $dbh = null;
 
         print "スタッフ一覧<br><br>";
-        print "<form action='staff_branch.php' method='post>";
+        print "<form action='staff_branch.php' method='post'>";
 
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
