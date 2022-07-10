@@ -2,62 +2,64 @@
 
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION["login"]) === false) {
+if (isset($_SESSION["login"]) === false) {
     print "ログインしていません。<br><br>";
     print "<a href='staff_login.html'>ログイン画面へ</a>";
     exit();
 } else {
-    print $_SESSION["name"]."さんログイン中";
+    print $_SESSION["name"] . "さんログイン中";
     print "<br><br>";
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>スタッフ修正登録</title>
 </head>
+
 <body>
-    
-<?php
-require_once("../common/common.php");
-require_once("../env.php");
-try {
-    
-    $post = sanitize($_POST);
-    $host = DB_HOST;
-    $db = DB_NAME;
-    $user = DB_USER;
-    $password = DB_PASS;
-    $code = $post["code"];
-    $name = $post["name"];
-    $pass = $post["pass"];
+
+    <?php
+    require_once("../common/common.php");
+    require_once("../env.php");
+    try {
+
+        $post = sanitize($_POST);
+        $host = DB_HOST;
+        $db = DB_NAME;
+        $user = DB_USER;
+        $password = DB_PASS;
+        $code = $post["code"];
+        $name = $post["name"];
+        $pass = $post["pass"];
 
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
-    $dbh = new PDO($dsn, $user, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
+        $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
+        $dbh = new PDO($dsn, $user, $password, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
 
-    $sql = "UPDATE mst_staff SET name=?, password=? WHERE code=?";
-    $stmt = $dbh -> prepare($sql);
-    $data[] = $name;
-    $data[] = $pass;
-    $data[] = $code;
-    $stmt -> execute($data);
+        $sql = "UPDATE mst_staff SET name=?, password=? WHERE code=?";
+        $stmt = $dbh->prepare($sql);
+        $data[] = $name;
+        $data[] = $pass;
+        $data[] = $code;
+        $stmt->execute($data);
 
-    $dbh = null;
+        $dbh = null;
+    } catch (Exception $e) {
+        print "只今障害が発生しております。<br><br>";
+        print "<a href='../staff_login/staff_login.html'>ログイン画面へ</a>";
+    }
+    ?>
 
-} catch(Exception $e) {
-    print "只今障害が発生しております。<br><br>";
-    print "<a href='../staff_login/staff_login.html'>ログイン画面へ</a>";
-}
-?>
-
-修正完了しました。<br><br>
-<a href="staff_list.php">スタッフ一覧へ</a>
+    修正完了しました。<br><br>
+    <a href="staff_list.php">スタッフ一覧へ</a>
 </body>
+
 </html>
