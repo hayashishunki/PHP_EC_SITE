@@ -24,7 +24,7 @@ if(isset($_SESSION["login"]) === false) {
     
 <?php
 require_once("../common/common.php");
-
+require_once("../env.php");
 try {
     
     $post = sanitize($_POST);
@@ -34,14 +34,30 @@ try {
     $password = DB_PASS;
     $code = $post["code"];
     $name = $post["name"];
-    $pass = $post["post"];
+    $pass = $post["pass"];
 
 
     $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
     $dbh = new PDO($dsn, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
+
+    $sql = "UPDATE mst_staff SET name=?, password=? WHERE code=?";
+    $stmt = $dbh -> prepare($sql);
+    $data[] = $name;
+    $data[] = $pass;
+    $data[] = $code;
+    $stmt -> execute($data);
+
+    $dbh = null;
+
+} catch(Exception $e) {
+    print "只今障害が発生しております。<br><br>";
+    print "<a href='../staff_login/staff_login.html'>ログイン画面へ</a>";
 }
 ?>
+
+修正完了しました。<br><br>
+<a href="staff_list.php">スタッフ一覧へ</a>
 </body>
 </html>
