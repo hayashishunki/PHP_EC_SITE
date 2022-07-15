@@ -31,10 +31,10 @@ if(isset($_SESSION["login"]) === false) {
         $host = DB_HOST;
         $db = DB_NAME;
         $user = DB_USER;
-        $pass = DB_PASS;
+        $password = DB_PASS;
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
-        $dsh = new PDO($dsn, $user, $password, [
+        $dbh = new PDO($dsn, $user, $password, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ]);
 
