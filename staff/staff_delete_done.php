@@ -2,58 +2,62 @@
 
 session_start();
 session_regenerate_id(true);
-if(isset($_SESSION["login"]) === false) {
+if (isset($_SESSION["login"]) === false) {
     print "ログインしていません。<br><br>";
     print "<a href='staff_login.html'>ログイン画面へ</a>";
     exit();
 } else {
-    print $_SESSION["name"]."さんログイン中";
+    print $_SESSION["name"] . "さんログイン中";
     print "<br><br>";
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>スタッフ削除実行</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
-    
-<?php
 
-require_once("../env.php");
-require_once("../common/common.php");
+    <?php
 
-$host = DB_HOST;
-$db = DB_NAME;
-$user = DB_USER;
-$pass = DB_PASS;
+    require_once("../env.php");
+    require_once("../common/common.php");
 
-try {
-    $post = sanitize($_POST);
-    $code = $post["code"];
+    $host = DB_HOST;
+    $db = DB_NAME;
+    $user = DB_USER;
+    $pass = DB_PASS;
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
-    $dbh = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
+    try {
+        $post = sanitize($_POST);
+        $code = $post["code"];
 
-    $sql = "DELETE FROM mst_staff WHERE code=?";
-    $stmt = $dbh -> prepare($sql);
-    $data[] = $code;
-    $stmt -> execute($data);
+        $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
+        $dbh = new PDO($dsn, $user, $pass, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
 
-    $dbh = null;
-} catch(Exception $e) {
-    print "只今障害が発生しております。<br><br>";
-    print "<a href='staff_login/staff_login.html'>ログイン画面へ</a>";
-}
-?>
+        $sql = "DELETE FROM mst_staff WHERE code=?";
+        $stmt = $dbh->prepare($sql);
+        $data[] = $code;
+        $stmt->execute($data);
 
-削除完了しました。<br><br>
-<a href="staff_list.php">スタッフ一覧へ</a>
+        $dbh = null;
+    } catch (Exception $e) {
+        print "只今障害が発生しております。<br><br>";
+        print "<a href='staff_login/staff_login.html'>ログイン画面へ</a>";
+    }
+    ?>
+
+    削除完了しました。<br><br>
+    <a href="staff_list.php">スタッフ一覧へ</a>
 </body>
+
 </html>

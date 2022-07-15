@@ -21,6 +21,7 @@ if (isset($_SESSION["login"]) === false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>スタッフ削除確認画面</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -43,7 +44,7 @@ if (isset($_SESSION["login"]) === false) {
         ]);
 
         $sql = "SELECT code, name FROM mst_staff WHERE code=?";
-        $stmt = $dbh -> prepare($sql);
+        $stmt = $dbh->prepare($sql);
         $data[] = $code;
         $stmt->execute($data);
 
