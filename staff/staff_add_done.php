@@ -34,13 +34,12 @@ if (isset($_SESSION["login"]) === false) {
     $user = DB_USER;
     $password = DB_PASS;
 
-    $post = sanitize($_POST);
-    $name = $post["name"];
-    $pass = $post["pass"];
-
-    $dsn = "mysql:host=$host;dbname=$db;charset=UTF8";
-
     try {
+        $post = sanitize($_POST);
+        $name = $post["name"];
+        $pass = $post["pass"];
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=UTF8";
         $dbh = new PDO($dsn, $user, $password, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);

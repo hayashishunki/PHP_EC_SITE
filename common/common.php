@@ -11,7 +11,6 @@ function sanitize($before)
 function pulldown_cate()
 {
     print "<select name= 'cate'>";
-    print "<option value=>項目を選択してください</option>";
     print "<option value='食品'>食品</option>";
     print "<option value='家電'>家電</option>";
     print "<option value='書籍'>書籍</option>";

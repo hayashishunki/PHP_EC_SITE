@@ -25,7 +25,7 @@
 
 <body>
     <!-- enctype="multipart/form-data = 画像のデータpost送信 -->
-    <form action="product_add_check.php" method="post" enctype="multipart/form-data">
+    <form action="pro_add_check.php" method="post" enctype="multipart/form-data">
         商品追加<br><br>
         カテゴリー<br>
         <?php require_once("../common/common.php"); ?>
