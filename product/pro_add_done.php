@@ -65,7 +65,7 @@
     ?>
 
     商品を追加しました。<br><br>
-    <a href="product_list.php">スタッフ一覧へ</a>
+    <a href="pro_list.php">スタッフ一覧へ</a>
 
 </body>
 
