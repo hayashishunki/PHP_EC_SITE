@@ -46,7 +46,7 @@
         $dbh = null;
 
         print "商品一覧<br><br>";
-        print "<form action='product_branch.php' method='post'>";
+        print "<form action='pro_branch.php' method='post'>";
 
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
