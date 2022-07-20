@@ -52,7 +52,7 @@
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (empty($rec["gazou"]) === true) {
-            $disp_gazou = "";
+            $disp_gazou = ""; //画像無し時空白表示
         } else {
             $disp_gazou = "<img src='./gazou/" . $rec['gazou'] . "'>";
         }
