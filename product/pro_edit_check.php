@@ -84,7 +84,7 @@ if (isset($_SESSION["login"]) === false) {
         print "</form>";
     } else {
         print "上記商品を修正しますか？<br><br>";
-        print "<form action='product_edit_done.php' method='post'>";
+        print "<form action='pro_edit_done.php' method='post'>";
         print "<input type='hidden' name='cate' value='" . $cate . "'>";
         print "<input type='hidden' name='code' value='" . $code . "'>";
         print "<input type='hidden' name='name' value='" . $name . "'>";
